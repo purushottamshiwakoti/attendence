@@ -1,20 +1,56 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { View, Text } from "react-native";
+import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import Welcome from "./src/screens/Welcome";
+import LoginParent from "./src/screens/LoginParent";
+import LoginTeacher from "./src/screens/LoginTeacher";
+import ParentScreen from "./src/screens/ParentScreen";
+import TeacherScreen from "./src/screens/TeacherScreen";
+import useAuthStore from "./src/hooks/useAuth";
+import LeaveNote from "./src/components/parent/LeaveNote";
+import ViewLeaveNote from "./src/components/parent/ViewLeaveNote";
+import ModifyLeaveNote from "./src/components/teacher/ModifyLeaveNote";
+import CreateNotice from "./src/components/teacher/CreateNotice";
+import ViewNotice from "./src/components/ViewNotice";
+const Stack = createNativeStackNavigator();
 
-export default function App() {
+const App = () => {
+  const { id, role } = useAuthStore();
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
+        {!id ? (
+          <Stack.Group>
+            <Stack.Screen name="Welcome" component={Welcome} />
+            <Stack.Screen name="LoginParent" component={LoginParent} />
+            <Stack.Screen name="LoginTeacher" component={LoginTeacher} />
+          </Stack.Group>
+        ) : (
+          <Stack.Group>
+            {role == "PARENT" ? (
+              <Stack.Group>
+                <Stack.Screen name="ParentScreen" component={ParentScreen} />
+                <Stack.Screen name="ApplyLeaveNote" component={LeaveNote} />
+                <Stack.Screen name="ViewLeaveNote" component={ViewLeaveNote} />
+                <Stack.Screen name="ViewNotice" component={ViewNotice} />
+              </Stack.Group>
+            ) : (
+              <Stack.Group>
+                <Stack.Screen name="TeacherScreen" component={TeacherScreen} />
+                <Stack.Screen name="CreateNotice" component={CreateNotice} />
+                <Stack.Screen name="ViewNotice" component={ViewNotice} />
+                <Stack.Screen
+                  name="ModifyLeaveNote"
+                  component={ModifyLeaveNote}
+                />
+              </Stack.Group>
+            )}
+          </Stack.Group>
+        )}
+      </Stack.Navigator>
+    </NavigationContainer>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
