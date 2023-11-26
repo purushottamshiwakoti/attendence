@@ -23,10 +23,10 @@ const TeacherScreen = () => {
         />
       </Appbar.Header>
       <View style={{ marginTop: 10, margin: 10 }}>
-        <TeacherButton title={"Take Attendence"} navigate={"screen"} />
-        <TeacherButton title={"View Attendence"} navigate={"screen"} />
+        <TeacherButton title={"Take Attendence"} navigate={"TakeAttendence"} />
+        <TeacherButton title={"View Attendence"} navigate={"ViewAttendence"} />
         <TeacherButton title={"Create Notice"} navigate={"CreateNotice"} />
-        <TeacherButton title={"View Notice"} navigate={"ViewNotice"} />
+        <TeacherButton title={"View All Notes"} navigate={"ViewNotice"} />
         <TeacherButton
           title={"Check Leave Notes"}
           navigate={"ModifyLeaveNote"}
