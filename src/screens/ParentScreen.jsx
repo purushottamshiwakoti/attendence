@@ -23,7 +23,10 @@ const ParentScreen = () => {
         />
       </Appbar.Header>
       <View style={{ marginTop: 10, margin: 10 }}>
-        <TeacherButton title={"View Attendence"} navigate={"screen"} />
+        <TeacherButton
+          title={"View Attendence"}
+          navigate={"ViewStudentAttendence"}
+        />
         <TeacherButton title={"View Notice"} navigate={"ViewNotice"} />
         <TeacherButton title={"Apply Leave Note"} navigate={"ApplyLeaveNote"} />
         <TeacherButton title={"Check Leave Notes"} navigate={"ViewLeaveNote"} />
