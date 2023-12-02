@@ -1,9 +1,9 @@
 import { View, Text } from "react-native";
 import React from "react";
 import { Appbar } from "react-native-paper";
-import useAuthStore from "../hooks/useAuth";
 import { useNavigation } from "@react-navigation/native";
 import TeacherButton from "../components/TeacherButton";
+import useAuthStore from "../hooks/useAuth";
 
 const TeacherScreen = () => {
   const { name, logout } = useAuthStore();
@@ -26,7 +26,11 @@ const TeacherScreen = () => {
         <TeacherButton title={"Take Attendence"} navigate={"TakeAttendence"} />
         <TeacherButton title={"View Attendence"} navigate={"ViewAttendence"} />
         <TeacherButton title={"Create Notice"} navigate={"CreateNotice"} />
-        <TeacherButton title={"View All Notes"} navigate={"ViewNotice"} />
+        <TeacherButton title={"View All Notices"} navigate={"ViewNotice"} />
+        <TeacherButton
+          title={"View All Leave Notes"}
+          navigate={"ViewAllLeaveNote"}
+        />
         <TeacherButton
           title={"Check Leave Notes"}
           navigate={"ModifyLeaveNote"}

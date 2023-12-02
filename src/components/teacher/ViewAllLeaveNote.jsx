@@ -1,12 +1,12 @@
 import { View, Text } from "react-native";
 import React, { useEffect, useState } from "react";
 import { Appbar, Card } from "react-native-paper";
-import useAuthStore from "../hooks/useAuth";
 import axios from "axios";
 import { useNavigation } from "@react-navigation/native";
+import useAuthStore from "../../hooks/useAuth";
 import { ScrollView } from "react-native";
 
-const ViewNotice = () => {
+const ViewAllLeaveNote = () => {
   const { name, logout } = useAuthStore();
   const [notes, setNotes] = useState([]);
   const navigation = useNavigation();
@@ -14,11 +14,11 @@ const ViewNotice = () => {
     const fetchNotes = async () => {
       try {
         const response = await axios.get(
-          `https://attendence-five.vercel.app/api/notices`
+          `https://attendence-five.vercel.app/api/leaveNote`
         );
         const data = response.data;
-        const { notices } = data;
-        setNotes(notices);
+        const { leaveNote } = data;
+        setNotes(leaveNote);
       } catch (error) {
         console.log(error);
       }
@@ -26,7 +26,6 @@ const ViewNotice = () => {
     fetchNotes();
   }, []);
 
-  console.log(notes);
   return (
     <ScrollView>
       <Appbar.Header>
@@ -49,7 +48,7 @@ const ViewNotice = () => {
       </Appbar.Header>
       <View style={{ margin: 10 }}>
         <Text style={{ fontSize: 18, color: "green", fontWeight: "500" }}>
-          All Notices
+          All Leave Notes
         </Text>
         <View>
           {notes ? (
@@ -61,6 +60,7 @@ const ViewNotice = () => {
                   <Text variant="bodyMedium">
                     Description: {note.description}
                   </Text>
+                  <Text variant="bodyMedium">Status: {note.status}</Text>
                 </Card.Content>
               </Card>
             ))
@@ -73,4 +73,4 @@ const ViewNotice = () => {
   );
 };
 
-export default ViewNotice;
+export default ViewAllLeaveNote;

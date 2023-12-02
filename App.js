@@ -15,6 +15,7 @@ import CreateNotice from "./src/components/teacher/CreateNotice";
 import ViewNotice from "./src/components/ViewNotice";
 import TakeAttendence from "./src/components/teacher/TakeAttendence";
 import ViewAttendence from "./src/components/teacher/ViewAttendence";
+import ViewAllLeaveNote from "./src/components/teacher/ViewAllLeaveNote";
 const Stack = createNativeStackNavigator();
 
 const App = () => {
@@ -42,7 +43,14 @@ const App = () => {
                 <Stack.Screen name="TeacherScreen" component={TeacherScreen} />
                 <Stack.Screen name="CreateNotice" component={CreateNotice} />
                 <Stack.Screen name="ViewNotice" component={ViewNotice} />
-                <Stack.Screen name="ViewAttendence" component={ViewAttendence} />
+                <Stack.Screen
+                  name="ViewAllLeaveNote"
+                  component={ViewAllLeaveNote}
+                />
+                <Stack.Screen
+                  name="ViewAttendence"
+                  component={ViewAttendence}
+                />
                 <Stack.Screen
                   name="TakeAttendence"
                   component={TakeAttendence}
